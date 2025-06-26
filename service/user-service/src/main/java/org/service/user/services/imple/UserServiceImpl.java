@@ -5,7 +5,9 @@ import org.service.user.dto.UserDTO;
 import org.service.user.exception.ResourceNotFoundException;
 import org.service.user.exception.UserAlreadyExistsException;
 import org.service.user.mapper.UserMapper;
+import org.service.user.model.Role;
 import org.service.user.model.UserModel;
+import org.service.user.repository.RoleRepository;
 import org.service.user.repository.UserRepository;
 import org.service.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -26,6 +30,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
 
     @Override
@@ -65,6 +72,12 @@ public class UserServiceImpl implements UserService {
             throw new UserAlreadyExistsException("User with mobile number " + userDTO.getMobileNumber() + " already exists.");
         }
         UserModel userModel = this.mapper.toEntity(userDTO);
+
+        List<Role> list = roleRepository.findAllByIsActiveTrueAndIsDeletedFalseAndIsDefaultTrue();
+        if (!list.isEmpty()) {
+            Set<Role> roles = new HashSet<>(list);
+            userModel.setRoles(roles);
+        }
 
         userModel.setPassword(passwordEncoder.encode(userModel.getPassword()));
         UserModel savedUser = userRepo.save(userModel);

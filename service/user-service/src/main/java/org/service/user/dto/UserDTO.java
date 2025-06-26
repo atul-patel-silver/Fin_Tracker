@@ -1,11 +1,14 @@
 package org.service.user.dto;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 import lombok.Data;
+import org.service.user.model.Role;
+
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
 public class UserDTO {
-
     private Long id;
 
     @NotBlank(message = "First name is required")

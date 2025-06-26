@@ -1,0 +1,20 @@
+select count(*) from tbl_users where is_deleted=false and is_active=true
+
+select id,first_name,last_name,role,user_name,email_id from tbl_users where is_deleted=false and is_active=true
+
+select "id",            "user_name",            "email_id"    from tbl_users  where "id" = ?  AND is_deleted=false and is_active=true
+
+
+
+update tbl_users set "is_deleted" = true where LOWER(user_name) = LOWER(?)
+
+select "id",            "user_name",            "email_id", "first_name", "last_name" from tbl_users  where "email_id" = ?  AND is_deleted=false and is_active=true
+
+
+select "id",            "user_name",            "email_id", "first_name", "last_name"  from tbl_users where LOWER(user_name) = LOWER(?)  AND is_deleted=false and is_active=true
+
+
+select "id",            "user_name",            "email_id", "first_name", "last_name"   from tbl_users where upper("user_name") like (?)  or upper("email_id") like (?) or upper("first_name") like (?) or upper("last_name") like (?) AND (is_deleted=false and is_active=true)
+
+
+select "password" from tbl_users where "user_name" = ?    AND is_deleted=false and is_active=true

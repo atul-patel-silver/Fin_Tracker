@@ -1,13 +1,18 @@
 server:
-    port: 8080
+    port: 8081
 
 spring:
   application:
     name: user-service
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/user_service_db
+#    username: postgres
+#    password: root
+
   datasource:
-    url: jdbc:postgresql://localhost:5432/user_service_db
+    url: jdbc:postgresql://localhost:3308/user_service_db
     username: postgres
-    password: root
+    password: root123
 
   jpa:
     show-sql: true
@@ -16,3 +21,24 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+
+
+# key cloak config
+keycloak:
+  realm: FoodSwift
+  auth-server-url: http://localhost:8080
+  # Use 'external' in production
+  ssl-required: external
+
+  # Name of the client
+  resource: food_swift
+  # Replace with your client's secret
+  credentials:
+    secret: droKvAMJCJEfmyvvHq5zgzY42V2uJzhb
+  use-resource-role-mappings: true
+  bearer-only: true
+
+grant-type: password
+name: atulpatel
+password: Atul@2001
