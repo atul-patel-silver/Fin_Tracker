@@ -18,3 +18,7 @@ select "id",            "user_name",            "email_id", "first_name", "last_
 
 
 select "password" from tbl_users where "user_name" = ?    AND is_deleted=false and is_active=true
+
+
+
+http://localhost:8080/realms/Fin_Tracker/protocol/openid-connect/auth?client_id=fin_tracker&response_type=code&scope=openid&redirect_uri=http://localhost:8081/api/auth/callback&kc_idp_hint=google

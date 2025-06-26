@@ -1,5 +1,6 @@
 package org.service.user.dto;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.service.user.model.Role;
@@ -40,7 +41,9 @@ public class UserDTO {
     )
     private String password;
 
-    private String role;
+    private String sub;
+
+    private String loginType;
 
     boolean isActive ;
 

@@ -12,6 +12,8 @@ import org.keyclaok.fedration.util.PBKDF2SHA256HashingUtil;
 import org.keyclaok.fedration.util.PagingUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -205,10 +207,10 @@ public class UserRepository {
             /*boolean result = BCrypt.verifyer().verify(password.toCharArray(), hash).verified;
             log.infov("BCrypt validation result for {0}: {1}", username, result);*/
             System.out.println("BCrypt validation result for " + password + " " + hash);
-//            PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-//            boolean isMatch = passwordEncoder.matches(password, hash);
-            boolean isMatch = BCrypt.checkpw(password, hash);
+            boolean isMatch = passwordEncoder.matches(password, hash);
+//            boolean isMatch = BCrypt.checkpw(password, hash);
             log.infov("BCrypt validation result for {0}: {1}", username, isMatch);
 
             return isMatch;

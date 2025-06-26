@@ -78,7 +78,8 @@ public class UserServiceImpl implements UserService {
             Set<Role> roles = new HashSet<>(list);
             userModel.setRoles(roles);
         }
-
+        userModel.setActive(true);
+        userModel.setLoginType("Manual");
         userModel.setPassword(passwordEncoder.encode(userModel.getPassword()));
         UserModel savedUser = userRepo.save(userModel);
         return this.mapper.toDto(savedUser);

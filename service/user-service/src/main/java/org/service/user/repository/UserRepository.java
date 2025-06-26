@@ -10,6 +10,7 @@ public interface UserRepository extends JpaRepository<UserModel, Long> {
     boolean existsByEmailId(String email);
     boolean existsByUserName(String userName);
     boolean existsByMobileNumber(String mobileNumber);
+    Optional<UserModel> findByEmailIdAndIsActiveTrueAndIsDeletedFalse(String emailId);
     List<UserModel> findByIsActiveTrueAndIsDeletedFalse();
     Optional<UserModel> findByIdAndIsActiveTrueAndIsDeletedFalse(Long id);
 }

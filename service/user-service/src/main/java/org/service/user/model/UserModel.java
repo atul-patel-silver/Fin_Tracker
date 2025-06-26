@@ -40,8 +40,13 @@ public class UserModel extends BaseModel{
     @Column(name = "is_deleted", nullable = false)
     boolean isDeleted = false;
 
-    @Column(name = "role")
-    private String role;
+//    @Column(name = "role")
+//    private String role;
+
+    private String sub;
+
+    @Column(name = "login_type")
+    private String loginType;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

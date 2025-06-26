@@ -4,15 +4,15 @@ server:
 spring:
   application:
     name: user-service
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/user_service_db
-#    username: postgres
-#    password: root
-
   datasource:
-    url: jdbc:postgresql://localhost:3308/user_service_db
+    url: jdbc:postgresql://localhost:5432/user_service_db
     username: postgres
-    password: root123
+    password: root
+
+#  datasource:
+#    url: jdbc:postgresql://localhost:3308/user_service_db
+#    username: postgres
+#    password: root123
 
   jpa:
     show-sql: true
@@ -26,19 +26,20 @@ spring:
 
 # key cloak config
 keycloak:
-  realm: FoodSwift
+  realm: Fin_Tracker
   auth-server-url: http://localhost:8080
   # Use 'external' in production
   ssl-required: external
 
   # Name of the client
-  resource: food_swift
+  resource: fin_tracker
   # Replace with your client's secret
   credentials:
-    secret: droKvAMJCJEfmyvvHq5zgzY42V2uJzhb
+    secret: RwVc3vGWlDVNzW72Ce5VBoZubWIbJqc6
   use-resource-role-mappings: true
   bearer-only: true
+  redirect-uri: http://localhost:8081/api/auth/callback
 
 grant-type: password
-name: atulpatel
-password: Atul@2001
+name: admin123
+password: admin

@@ -32,4 +32,7 @@ public class ApiResponse<T> {
     public static <T> ApiResponse<T> noContent(String message) {
         return new ApiResponse<>(204, message, null);
     }
+    public static <T> ApiResponse<T> unAuthorized(String message, T data) {
+        return new ApiResponse<>(401, message, null);
+    }
 }
