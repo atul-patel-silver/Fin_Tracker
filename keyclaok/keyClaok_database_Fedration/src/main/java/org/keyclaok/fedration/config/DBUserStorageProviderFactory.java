@@ -1,4 +1,4 @@
-package org.keyclaok.fedration.exception;
+package org.keyclaok.fedration.config;
 
 import com.google.auto.service.AutoService;
 import lombok.extern.jbosslog.JBossLog;

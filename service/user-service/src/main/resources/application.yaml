@@ -1,45 +1,52 @@
-server:
-    port: 8081
+#server:
+#    port: 8081
 
 spring:
   application:
     name: user-service
-  datasource:
-    url: jdbc:postgresql://localhost:5432/user_service_db
-    username: postgres
-    password: root
-
+  profiles:
+    active: dev
+  config:
+    import: "optional:configserver:http://localhost:8083/"
+#  profiles:
+#    active: dev
+##    datasource:
+##    url: jdbc:postgresql://localhost:5432/user_service_db
+##    username: postgres
+##    password: root
+#
 #  datasource:
 #    url: jdbc:postgresql://localhost:3308/user_service_db
 #    username: postgres
 #    password: root123
-
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-
-
-
-# key cloak config
-keycloak:
-  realm: Fin_Tracker
-  auth-server-url: http://localhost:8080
-  # Use 'external' in production
-  ssl-required: external
-
-  # Name of the client
-  resource: fin_tracker
-  # Replace with your client's secret
-  credentials:
-    secret: RwVc3vGWlDVNzW72Ce5VBoZubWIbJqc6
-  use-resource-role-mappings: true
-  bearer-only: true
-  redirect-uri: http://localhost:8081/api/auth/callback
-
-grant-type: password
-name: admin123
-password: admin
+#
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#
+#
+#
+## key cloak config
+#keycloak:
+#  realm: Fin_Tracker
+#  auth-server-url: http://localhost:8080
+#  # Use 'external' in production
+#  ssl-required: external
+#
+#  # Name of the client
+#  resource: fin_tracker
+#  # Replace with your client's secret
+#  credentials:
+##    secret: RwVc3vGWlDVNzW72Ce5VBoZubWIbJqc6
+#    secret: p4iyAe2LjagxOm7privweK7udL4yTonX
+#  use-resource-role-mappings: true
+#  bearer-only: true
+#  redirect-uri: http://localhost:8081/api/auth/callback
+#
+#grant-type: password
+#name: admin123
+#password: admin

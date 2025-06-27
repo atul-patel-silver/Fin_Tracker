@@ -31,7 +31,7 @@ import java.util.function.Function;
 public class UserRepository {
     
     
-    private DataSourceProvider  dataSourceProvider;
+    private  DataSourceProvider  dataSourceProvider;
     private QueryConfigurations queryConfigurations;
 
 
@@ -279,5 +279,62 @@ public class UserRepository {
             return roles;
         }, username);
     }
+    public boolean addToExternalDB(String email, String username, String firstName, String lastName) {
+        log.debug(">>> Entered External db <<<===========================================================================");
+        try {
+            String insertUserSQL = "INSERT INTO tbl_users (created_at, created_by, update_by, update_at, email_id, first_name, is_active, is_deleted, last_name, middle_name, mobile_number, password, role, user_name, login_type, sub) " +
+                    "VALUES (?, now(), 'keycloak', 'keycloak', now(), ?, ?, true, false, ?, '', '', '', '', '', ?, 'THIRD_PARTY', '')";
 
+            String insertRoleSQL = "INSERT INTO user_roles (user_id, role_id) " +
+                    "SELECT u.id, r.id FROM tbl_users u, tbl_role r " +
+                    "WHERE u.email_id = ? AND r.code = ?";
+
+
+
+            doQuery(insertUserSQL, null, rs -> null,
+                    email,          // email_id
+                    firstName,      // first_name
+                    lastName,       // last_name
+                    username        // user_name
+            );
+
+            doQuery(insertRoleSQL, null, rs -> null, email, "ROLE_USER");
+
+            System.out.println("✅ User inserted into local DB: " + email);
+            return true;
+        } catch (Exception e) {
+            System.err.println("❌ DB Insert failed: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public static UserRepository getInstance() {
+        try {
+            // STEP 1: Manually configure SQL queries
+            QueryConfigurations queryConfig = new QueryConfigurations(
+                    "SELECT COUNT(*) FROM tbl_users WHERE is_deleted = false", // count
+                    "SELECT * FROM tbl_users WHERE is_deleted = false", // listAll
+                    "SELECT * FROM tbl_users WHERE id = ?", // findById
+                    "DELETE FROM tbl_users WHERE id = ?", // removeById
+                    "SELECT * FROM tbl_users WHERE email = ?", // findByEmail
+                    "SELECT * FROM tbl_users WHERE user_name = ?", // findByUsername
+                    "SELECT * FROM tbl_users WHERE UPPER(user_name) LIKE ? OR UPPER(email) LIKE ?", // findBySearchTerm
+                    "SELECT password FROM tbl_users WHERE user_name = ?", // findPasswordHash
+                    "bcrypt", // hashFunction: choose "bcrypt" or "PBKDF2-SHA256"
+                    RDBMS.POSTGRESQL, // your enum type, e.g. MYSQL, POSTGRESQL, etc.
+                    true, // allowKeycloakDelete
+                    true  // allowDatabaseToOverwriteKeycloak
+            );
+
+            // STEP 2: Create DataSourceProvider (default no-arg constructor)
+            DataSourceProvider dataSourceProvider = new DataSourceProvider();
+
+            return new UserRepository(dataSourceProvider, queryConfig);
+
+        } catch (Exception e) {
+            System.err.println("Failed to create UserRepository instance: " + e.getMessage());
+            e.printStackTrace();
+            throw new IllegalStateException("Could not initialize UserRepository", e);
+        }
+    }
 }

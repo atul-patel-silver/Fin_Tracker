@@ -2,7 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.3</version>
+        <relativePath/>
+    </parent>
     <groupId>org.audit.demo</groupId>
     <artifactId>keyClaok_database_Fedration</artifactId>
     <packaging>jar</packaging>
@@ -13,21 +18,21 @@
         <java.version>17</java.version>
     </properties>
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-web</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.boot</groupId>-->
-        <!--            <artifactId>spring-boot-starter-tomcat</artifactId>-->
-        <!--            <scope>provided</scope>-->
-        <!--        </dependency>-->
 <!--        <dependency>-->
 <!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-test</artifactId>-->
-<!--            <scope>test</scope>-->
+<!--            <artifactId>spring-boot-starter-tomcat</artifactId>-->
+<!--            <scope>provided</scope>-->
 <!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -75,20 +80,20 @@
         </dependency>
 
         <!-- Use the exact SLF4J version that Keycloak already has -->
-<!--        <dependency>-->
-<!--            <groupId>org.slf4j</groupId>-->
-<!--            <artifactId>slf4j-api</artifactId>-->
-<!--            <version>2.0.7</version> &lt;!&ndash; Matches Keycloak &ndash;&gt;-->
-<!--            <scope>provided</scope> &lt;!&ndash; Provided because Keycloak already includes it &ndash;&gt;-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.7</version> <!-- Matches Keycloak -->
+            <scope>provided</scope> <!-- Provided because Keycloak already includes it -->
+        </dependency>
 
-<!--        &lt;!&ndash; Ensure compatibility with JBoss logging &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.jboss.slf4j</groupId>-->
-<!--            <artifactId>slf4j-jboss-logmanager</artifactId>-->
-<!--            <version>2.0.0.Final</version> &lt;!&ndash; Matches Keycloak &ndash;&gt;-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
+        <!-- Ensure compatibility with JBoss logging -->
+        <dependency>
+            <groupId>org.jboss.slf4j</groupId>
+            <artifactId>slf4j-jboss-logmanager</artifactId>
+            <version>2.0.0.Final</version> <!-- Matches Keycloak -->
+            <scope>provided</scope>
+        </dependency>
 
 
 
@@ -237,8 +242,6 @@
                                         <exclude>META-INF/*.SF</exclude>
                                         <exclude>META-INF/*.DSA</exclude>
                                         <exclude>META-INF/*.RSA</exclude>
-
-
                                     </excludes>
                                 </filter>
                             </filters>

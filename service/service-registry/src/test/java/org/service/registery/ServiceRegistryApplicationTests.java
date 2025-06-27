@@ -1,10 +1,10 @@
-package org.keyclaok.fedration;
+package org.service.registery;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class KeyClaokDatabaseFedrationApplicationTests {
+class ServiceRegistryApplicationTests {
 
     @Test
     void contextLoads() {

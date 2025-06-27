@@ -1,4 +1,4 @@
-package org.keyclaok.fedration.exception;
+package org.keyclaok.fedration.config;
 
 import lombok.extern.jbosslog.JBossLog;
 import org.keyclaok.fedration.model.QueryConfigurations;
@@ -15,8 +15,6 @@ import org.keycloak.models.cache.CachedUserModel;
 import org.keycloak.models.credential.PasswordCredentialModel;
 import org.keycloak.storage.StorageId;
 import org.keycloak.storage.UserStorageProvider;
-import org.keycloak.storage.adapter.AbstractUserAdapterFederatedStorage;
-import org.keycloak.storage.federated.UserRoleMappingsFederatedStorage;
 import org.keycloak.storage.role.RoleStorageProviderModel;
 import org.keycloak.storage.user.UserLookupProvider;
 import org.keycloak.storage.user.UserQueryProvider;

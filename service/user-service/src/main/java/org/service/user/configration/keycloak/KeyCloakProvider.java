@@ -156,21 +156,21 @@ public class KeyCloakProvider {
             user.setDeleted(false);
             user.setUserName(email);
             user.setPassword(passwordEncoder.encode(email));
-            boolean b = this.userRepository.existsByUserName(user.getUserName());
-            if (b) {
-                Optional<UserModel> byEmailIdAndIsActiveTrueAndIsDeletedFalse = this.userRepository.findByEmailIdAndIsActiveTrueAndIsDeletedFalse(email);
-                if (byEmailIdAndIsActiveTrueAndIsDeletedFalse.isPresent()) {
-                    return byEmailIdAndIsActiveTrueAndIsDeletedFalse.get();
-                }
-            }else {
-                List<Role> list = roleRepository.findAllByIsActiveTrueAndIsDeletedFalseAndIsDefaultTrue();
-                if (!list.isEmpty()) {
-                    Set<Role> roles = new HashSet<>(list);
-                    user.setRoles(roles);
-                }
-                UserModel save = this.userRepository.save(user);
-                return save;
-            }
+//            boolean b = this.userRepository.existsByUserName(user.getUserName());
+//            if (b) {
+//                Optional<UserModel> byEmailIdAndIsActiveTrueAndIsDeletedFalse = this.userRepository.findByEmailIdAndIsActiveTrueAndIsDeletedFalse(email);
+//                if (byEmailIdAndIsActiveTrueAndIsDeletedFalse.isPresent()) {
+//                    return byEmailIdAndIsActiveTrueAndIsDeletedFalse.get();
+//                }
+//            }else {
+//                List<Role> list = roleRepository.findAllByIsActiveTrueAndIsDeletedFalseAndIsDefaultTrue();
+//                if (!list.isEmpty()) {
+//                    Set<Role> roles = new HashSet<>(list);
+//                    user.setRoles(roles);
+//                }
+//                UserModel save = this.userRepository.save(user);
+//                return save;
+//            }
             return new UserModel();
 
         }
