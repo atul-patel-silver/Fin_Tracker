@@ -23,8 +23,6 @@ select "password" from tbl_users where "user_name" = ?    AND is_deleted=false a
 
 http://localhost:8080/realms/Fin_Tracker/protocol/openid-connect/auth?client_id=fin_tracker&response_type=code&scope=openid&redirect_uri=http://localhost:8081/api/auth/callback&kc_idp_hint=google
 
-====889236787041-2u1voqr5s66s7js3freq7rhlrgf3u9fd.apps.googleusercontent.com===
-========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=====
 
 
 kc.bat start-dev --log-level=DEBUG --verbose
