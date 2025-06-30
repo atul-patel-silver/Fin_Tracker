@@ -279,7 +279,7 @@ public class UserRepository {
             return roles;
         }, username);
     }
-    public boolean addToExternalDB(String email, String username, String firstName, String lastName) {
+/*    public boolean addToExternalDB(String email, String username, String firstName, String lastName) {
         log.debug(">>> Entered External db <<<===========================================================================");
         try {
             String insertUserSQL = "INSERT INTO tbl_users (created_at, created_by, update_by, update_at, email_id, first_name, is_active, is_deleted, last_name, middle_name, mobile_number, password, role, user_name, login_type, sub) " +
@@ -327,7 +327,7 @@ public class UserRepository {
             );
 
             // STEP 2: Create DataSourceProvider (default no-arg constructor)
-            DataSourceProvider dataSourceProvider = new DataSourceProvider();
+            DataSourceProvider dataSourceProvider = DataSourceProvider.getInstance();
 
             return new UserRepository(dataSourceProvider, queryConfig);
 
@@ -336,5 +336,5 @@ public class UserRepository {
             e.printStackTrace();
             throw new IllegalStateException("Could not initialize UserRepository", e);
         }
-    }
+    }*/
 }
