@@ -5,7 +5,7 @@ spring:
   application:
     name: user-service
   profiles:
-    active: dev
+    active: prod
   config:
     import: "optional:configserver:http://localhost:8083/"
 #  profiles:
