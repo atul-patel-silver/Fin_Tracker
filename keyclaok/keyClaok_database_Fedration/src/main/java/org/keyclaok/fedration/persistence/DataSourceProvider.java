@@ -16,11 +16,12 @@ import java.util.concurrent.Executors;
 
 @JBossLog
 public class DataSourceProvider implements Closeable {
-    
+
     private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd-MM-YYYY HH:mm:ss");
     private              ExecutorService  executor           = Executors.newFixedThreadPool(1);
     private              HikariDataSource hikariDataSource;
-    
+    private static HikariDataSource dataSource;
+
     public DataSourceProvider() {
     }
     
@@ -63,5 +64,19 @@ public class DataSourceProvider implements Closeable {
         if (hikariDataSource != null) {
             hikariDataSource.close();
         }
+    }
+
+    public static synchronized DataSource getInstance() {
+        if (dataSource == null) {
+            HikariConfig config = new HikariConfig();
+            config.setJdbcUrl("jdbc:postgresql://localhost:3308/user_service_db");
+            config.setUsername("postgres");
+            config.setPassword("root123");
+            config.setDriverClassName("org.postgresql.Driver");
+            config.setMaximumPoolSize(10);
+            config.setMinimumIdle(2);
+            dataSource = new HikariDataSource(config);
+        }
+        return dataSource;
     }
 }

@@ -228,12 +228,6 @@ public class DBUserStorageProvider extends RoleStorageProviderModel implements U
         }
     }
 
-//    @Override
-//    public UserModel getUserByUsername(RealmModel realmModel, String s) {
-//        log.infov("lookup user by username: realm={0} username={1}", realmModel.getId(), s);
-//
-//        return repository.findUserByUsername(s).map(u -> new UserAdapter(session, realmModel, model, u, allowDatabaseToOverwriteKeycloak)).orElse(null);
-//    }
 
     @Override
     public UserModel getUserByUsername(RealmModel realmModel, String username) {
