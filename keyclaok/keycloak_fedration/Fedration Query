@@ -1,0 +1,30 @@
+select count(*) from tbl_users where is_deleted=false and is_active=true
+
+select id,first_name,last_name,user_name,email_id from tbl_users where is_deleted=false and is_active=true
+
+select "id",            "user_name",            "email_id"    from tbl_users  where "id" = ?  AND is_deleted=false and is_active=true
+
+
+
+update tbl_users set "is_deleted" = true where LOWER(user_name) = LOWER(?)
+
+select "id",            "user_name",            "email_id", "first_name", "last_name" from tbl_users  where "email_id" = ?  AND is_deleted=false and is_active=true
+
+
+select "id",            "user_name",            "email_id", "first_name", "last_name"  from tbl_users where LOWER(user_name) = LOWER(?)  AND is_deleted=false and is_active=true
+
+
+select "id",            "user_name",            "email_id", "first_name", "last_name"   from tbl_users where upper("user_name") like (?)  or upper("email_id") like (?) or upper("first_name") like (?) or upper("last_name") like (?) AND (is_deleted=false and is_active=true)
+
+
+select "password" from tbl_users where "user_name" = ?    AND is_deleted=false and is_active=true
+
+
+
+http://localhost:8080/realms/Fin_Tracker/protocol/openid-connect/auth?client_id=fin_tracker&response_type=code&scope=openid&redirect_uri=http://localhost:8081/api/auth/callback&kc_idp_hint=google
+
+====client-id: 889236787041-2u1voqr5s66s7js3freq7rhlrgf3u9fd.apps.googleusercontent.com===
+========client-secret: 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=====
+
+
+kc.bat start-dev --log-level=DEBUG --verbose

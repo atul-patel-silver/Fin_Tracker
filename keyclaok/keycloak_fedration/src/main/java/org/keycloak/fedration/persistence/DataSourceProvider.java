@@ -69,9 +69,9 @@ public class DataSourceProvider implements Closeable {
     public static synchronized DataSource getInstance() {
         if (dataSource == null) {
             HikariConfig config = new HikariConfig();
-            config.setJdbcUrl("jdbc:postgresql://localhost:5432/user_service_db");
+            config.setJdbcUrl("jdbc:postgresql://localhost:3308/user_service_db");
             config.setUsername("postgres");
-            config.setPassword("root");
+            config.setPassword("root123");
             config.setDriverClassName("org.postgresql.Driver");
             config.setMaximumPoolSize(10);
             config.setMinimumIdle(2);
