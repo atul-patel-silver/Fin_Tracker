@@ -144,34 +144,9 @@ public class KeyCloakProvider {
             String firstName = node.has("given_name") ? node.get("given_name").asText() : email;
             String lastName = node.has("family_name") ? node.get("family_name").asText() : email;
 
-            UserModel user = new UserModel();
-            user.setSub(sub);
-            user.setEmailId(email);
-            user.setFirstName(firstName);
-            user.setLastName(lastName);
-            user.setMobileNumber("");
-            user.setMiddleName("");
-            user.setLoginType("THIRD_PARTY");
-            user.setActive(true);
-            user.setDeleted(false);
-            user.setUserName(email);
-            user.setPassword(passwordEncoder.encode(email));
-//            boolean b = this.userRepository.existsByUserName(user.getUserName());
-//            if (b) {
-//                Optional<UserModel> byEmailIdAndIsActiveTrueAndIsDeletedFalse = this.userRepository.findByEmailIdAndIsActiveTrueAndIsDeletedFalse(email);
-//                if (byEmailIdAndIsActiveTrueAndIsDeletedFalse.isPresent()) {
-//                    return byEmailIdAndIsActiveTrueAndIsDeletedFalse.get();
-//                }
-//            }else {
-//                List<Role> list = roleRepository.findAllByIsActiveTrueAndIsDeletedFalseAndIsDefaultTrue();
-//                if (!list.isEmpty()) {
-//                    Set<Role> roles = new HashSet<>(list);
-//                    user.setRoles(roles);
-//                }
-//                UserModel save = this.userRepository.save(user);
-//                return save;
-//            }
-            return new UserModel();
+             Optional<UserModel> userModelOptional = this.userRepository.findByEmailIdAndIsActiveTrueAndIsDeletedFalse(email);
+            return userModelOptional.orElseGet(UserModel::new);
+
 
         }
     }
