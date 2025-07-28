@@ -1,0 +1,26 @@
+/* index.css or global.css */
+:root {
+  --bg-color: #ffffff;
+  --card-bg: #f9f9f9;
+  --text-primary: #1a1a1a;
+  --text-secondary: #555;
+  --error-color: #e74c3c;
+  --border: #ddd;
+}
+
+[data-theme='dark'] {
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --text-primary: #f0f0f0;
+  --text-secondary: #aaa;
+  --error-color: #ff6b6b;
+  --border: #333;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

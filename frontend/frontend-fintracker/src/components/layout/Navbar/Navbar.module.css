@@ -1,0 +1,87 @@
+/* Base Theme Styles */
+:root {
+  --color-bg-light: #ffffff;
+  --color-bg-dark: #1e1e1e;
+  --color-text-light: #1e1e1e;
+  --color-text-dark: #ffffff;
+  --color-primary: #4f46e5;
+  --color-secondary: #6b7280;
+  --transition-fast: 0.3s ease;
+}
+
+[data-theme="light"] {
+  --color-bg: var(--color-bg-light);
+  --color-text: var(--color-text-light);
+}
+
+[data-theme="dark"] {
+  --color-bg: var(--color-bg-dark);
+  --color-text: var(--color-text-dark);
+}
+
+.navbar {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navLink {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.navLink:hover {
+  color: var(--color-primary);
+}
+
+.welcomeText {
+  font-size: 1rem;
+  color: var(--color-secondary);
+  margin-right: 1rem;
+}
+
+.themeToggle {
+  background-color: transparent;
+  border: 1px solid var(--color-secondary);
+  color: var(--color-text);
+  padding: 6px 10px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.themeToggle:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
